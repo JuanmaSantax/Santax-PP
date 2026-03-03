@@ -1,0 +1,54 @@
+Vehicle:
+POST:
+
+{
+    "patent": "ABC123", 
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2020, 
+    "originalColorCode": "BLK01" 
+}
+{
+    "patent": "JMY208", 
+    "make": "Chevrolet",
+    "model": "s10",
+    "year": 2011, 
+    "originalColorCode": "cheCOL" 
+}
+{
+    "patent": "AF099HX", 
+    "make": "Volkswaguen",
+    "model": "Amarok",
+    "year": 2021, 
+    "originalColorCode": "volkCOL" 
+}
+{
+    "patent": "LCD666", 
+    "make": "BMW",
+    "model": "X3",
+    "year": 2013, 
+    "originalColorCode": "bmCOL" 
+}
+
+
+WorkOrder:
+POST:
+
+{
+  "vehicleId": 1,
+  "generalDescription": "Front bumper damage",
+  "entryDate": "2026-03-03",
+  "exitDate": null
+}
+{
+  "vehicleId": 2,
+  "generalDescription": "Rear bumper damage",
+  "entryDate": "2025-03-03",
+  "exitDate": null
+}
+{
+  "vehicleId": 3,
+  "generalDescription": "Front left door damage, fornt left fender damage",
+  "entryDate": "2026-01-03",
+  "exitDate": null
+}

@@ -1,5 +1,7 @@
 package com.taller.backend.model;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,4 +28,10 @@ public class WorkOrder {
     private LocalDate entryDate; 
 
     private LocalDate exitDate; 
+
+    @OneToMany(mappedBy = "workOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RepairedArea> repairedAreas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "workOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ColorAdjustment> colorAdjustments = new ArrayList<>();
 }
