@@ -1,6 +1,6 @@
 package com.taller.backend.controller;
 import com.taller.backend.service.VehicleService;
-import java.util.List;
+
 import com.taller.backend.dto.VehicleDTO;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/vehicles")
 public class VehicleController {
@@ -22,9 +26,9 @@ public class VehicleController {
         this.vehicleService = vehicleService;
     }
 
-    @GetMapping
-    public List<VehicleDTO> getAllVehicles() {
-        return vehicleService.findAll();
+   @GetMapping
+    public Page<VehicleDTO> findAll(Pageable pageable) {
+    return vehicleService.findAll(pageable);
     }
 
     @GetMapping("/{id}")

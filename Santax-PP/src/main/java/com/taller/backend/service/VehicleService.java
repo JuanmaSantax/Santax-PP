@@ -3,10 +3,11 @@ package com.taller.backend.service;
 import com.taller.backend.dto.VehicleDTO;
 import com.taller.backend.model.Vehicle;
 import com.taller.backend.repository.VehicleRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.taller.backend.mapper.VehicleMapper;
-import java.util.stream.Collectors;
-import java.util.List;
+
 
 @Service
 public class VehicleService {
@@ -17,11 +18,10 @@ public class VehicleService {
         this.vehicleRepository = vehicleRepository;
     }
 
-    public List<VehicleDTO> findAll() {
-        return vehicleRepository.findAll()
-                .stream()
-                .map(VehicleMapper::toDTO)
-                .collect(Collectors.toList());
+   public Page<VehicleDTO> findAll(Pageable pageable) {
+    return vehicleRepository
+            .findAll(pageable)
+            .map(VehicleMapper::toDTO);
     }
 
     public VehicleDTO findById(Long id) {
