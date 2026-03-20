@@ -53,7 +53,7 @@ public class VehicleService {
         return VehicleMapper.toDTO(updated);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Long id) { 
         if (!vehicleRepository.existsById(id)) {
             throw new RuntimeException("Vehicle not found");
         }

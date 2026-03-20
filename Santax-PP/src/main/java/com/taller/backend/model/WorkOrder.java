@@ -3,6 +3,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,8 +20,9 @@ public class WorkOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne //Muchas ordenes un vehiculo
     @JoinColumn(name = "vehicle_id", nullable = false)
+    @JsonBackReference//Evita que la orden vuelva a llamar al vehiculo y genere un ciclo infinito
     private Vehicle vehicle;
 
     private String generalDescription;
@@ -29,6 +32,7 @@ public class WorkOrder {
 
     private LocalDate exitDate; 
 
+    // Una orden de trabajo puede tener varias áreas reparadas y ajustes de color
     @OneToMany(mappedBy = "workOrder", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RepairedArea> repairedAreas = new ArrayList<>();
 

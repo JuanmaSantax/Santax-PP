@@ -1,6 +1,7 @@
 package com.taller.backend.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +17,7 @@ public class WorkOrderDTO {
     private String generalDescription;
     private LocalDate entryDate;
     private LocalDate exitDate;
+
+    private List<RepairedAreaDTO> repairedAreas;
+    private List<ColorAdjustmentDTO> colorAdjustments;
 }

@@ -1,4 +1,8 @@
 package com.taller.backend.model;
+import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,4 +29,8 @@ public class Vehicle {
     private Integer year;
 
     private String originalColorCode; 
+
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL  , orphanRemoval = true)
+    @JsonManagedReference
+    private List<WorkOrder> workOrders =new ArrayList<>();
 }

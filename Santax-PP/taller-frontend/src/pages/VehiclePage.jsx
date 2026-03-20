@@ -8,14 +8,10 @@ function VehiclesPage() {
   const [vehicles, setVehicles] = useState([])
   const [page, setPage] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
-  const [editVehicle, setEditVehicle] = useState(null)
+  const [editingVehicle, setEditingVehicle] = useState(null)
 
 
   const fetchVehicles = async () => {
-    const response = await fetch(
-      `http://localhost:8080/vehicles?page=${page}&size=5`
-    )
-
     const data = await getVehicles(page, 5)
 
     setVehicles(data.content)
@@ -31,15 +27,20 @@ function VehiclesPage() {
 
       <h1>Vehicles</h1>
 
-      <VehicleForm editVehicle={editVehicle}
-       onVehicleSaved={() => setEditVehicle(null)}
-       fetchVehicles={fetchVehicles}
-       /* onVehicleCreated={fetchVehicles}*/ />
+      <VehicleForm
+       editingVehicle={editingVehicle}
+       onVehicleSaved={() => { 
+        setEditingVehicle(null)
+        fetchVehicles()
+       }}
+       />
 
-      <VehicleList vehicles={vehicles}
+      <VehicleList 
+      vehicles={vehicles}
       onVehicleDeleted={fetchVehicles}
-      onEditVehicle={setEditVehicle}
-       /*onVehicleCreated={fetchVehicles} *//>
+      onEditVehicle={setEditingVehicle}
+      onVehicleCreated={fetchVehicles}
+      />
 
       <div>
 

@@ -20,6 +20,9 @@ public class ColorAdjustment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(nullable = false)
+    private String tintName;
 
     @ManyToOne
     @JoinColumn(name = "work_order_id", nullable = false)
@@ -34,5 +37,8 @@ public class ColorAdjustment {
     @Column(nullable = false)
     private String finalFormula;
 
+    // hasDamero? 
     private String touchUpDescription; 
+    private String primerG1_G7;
+    private int numberOfCoats;
 }

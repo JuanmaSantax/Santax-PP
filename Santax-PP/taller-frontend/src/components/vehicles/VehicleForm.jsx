@@ -7,6 +7,7 @@ function VehicleForm({ editingVehicle, onVehicleSaved }) {
     patent: "",
     make: "",
     model: "",
+    originalColorCode: "",
     year: ""
   })
 
@@ -19,6 +20,7 @@ function VehicleForm({ editingVehicle, onVehicleSaved }) {
         patent: editingVehicle.patent || "",
         make: editingVehicle.make || "",
         model: editingVehicle.model || "",
+        originalColorCode: editingVehicle.originalColorCode|| "",
         year: editingVehicle.year || ""
       })
     }
@@ -36,7 +38,7 @@ function VehicleForm({ editingVehicle, onVehicleSaved }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!formData.patent || !formData.make || !formData.model || !formData.year) {
+    if (!formData.patent || !formData.make || !formData.model || !formData.year ) {
       setError("All fields are required")
       return
     }
@@ -63,6 +65,7 @@ function VehicleForm({ editingVehicle, onVehicleSaved }) {
         patent: "",
         make: "",
         model: "",
+        originalColorCode: "",
         year: ""
       })
 
@@ -111,7 +114,15 @@ function VehicleForm({ editingVehicle, onVehicleSaved }) {
           onChange={handleChange}
         />
       </div>
-
+    <div>
+        <input
+          name="originalColorCode"
+          type="text"
+          placeholder="Color Code"
+          value={formData.originalColorCode}
+          onChange={handleChange}
+        />
+    </div>
       <div>
         <input
           name="year"
