@@ -1,7 +1,7 @@
 
 A CORREGIR:
--Revisar service vehicle esta en amarillo 
--En gemini deje para seguir con el formulario de WorkOrder
+-Se cargan en la bd las repairArea pero no se renderiza automaticamente
+-Tengo un re quilombo en el mapper, emprolijar eso 
 
 
 Vehicle:

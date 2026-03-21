@@ -2,13 +2,13 @@ package com.taller.backend.mapper;
 
 import java.util.List;
 
+import com.taller.backend.dto.RepairedAreaDTO;
 import com.taller.backend.dto.VehicleDTO;
 import com.taller.backend.dto.WorkOrderDTO;
 import com.taller.backend.model.Vehicle;
 
 public class VehicleMapper {
     public static VehicleDTO toDTO(Vehicle entity) {
-    // Convertimos la lista de WorkOrders (entidad) a WorkOrderDTO
     List<WorkOrderDTO> orderDTOs = null;
     if (entity.getWorkOrders() != null) {
         orderDTOs = entity.getWorkOrders().stream()
@@ -19,6 +19,10 @@ public class VehicleMapper {
                 woDto.setEntryDate(order.getEntryDate());
                 woDto.setExitDate(order.getExitDate());
                 woDto.setVehicleId(entity.getId());
+                // Aquí es donde convertimos las áreas reparadas de cada orden a DTOs
+                woDto.setRepairedAreas(order.getRepairedAreas().stream()
+                .map(area -> new RepairedAreaDTO(area.getId(), area.getAreaName(), area.getJobDetail(), order.getId()))
+                .toList());
                 return woDto;
             }).toList();
     }

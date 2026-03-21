@@ -16,7 +16,8 @@ public class WorkOrderMapper {
         entity.getRepairedAreas().stream().map(area -> new RepairedAreaDTO(
             area.getId(), 
             area.getAreaName(),
-            area.getJobDetail()
+            area.getJobDetail(),
+            area.getWorkOrder().getId()
         )).toList() : new ArrayList<>();
 
     // 2. Mapear ColorAdjustments (Entidad -> DTO)

@@ -33,7 +33,7 @@ public class WorkOrder {
     private LocalDate exitDate; 
 
     // Una orden de trabajo puede tener varias áreas reparadas y ajustes de color
-    @OneToMany(mappedBy = "workOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "workOrder", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)//EAGER para cargar las áreas reparadas junto con la orden
     private List<RepairedArea> repairedAreas = new ArrayList<>();
 
     @OneToMany(mappedBy = "workOrder", cascade = CascadeType.ALL, orphanRemoval = true)

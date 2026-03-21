@@ -12,5 +12,6 @@ public class RepairedAreaDTO {
 
     private String areaName;
     private String jobDetail;
+    private Long workOrderId;
     
 }

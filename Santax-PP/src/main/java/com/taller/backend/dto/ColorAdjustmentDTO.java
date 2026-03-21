@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ColorAdjustmentDTO {
     private Long id;
-
+    private Long workOrderId;
     private String tintName;
     private String baseColorCode;
     private String paintSupplier;
