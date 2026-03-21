@@ -12,34 +12,31 @@ import com.taller.backend.model.WorkOrder;
 public class WorkOrderMapper {
 
     public static WorkOrderDTO toDTO(WorkOrder entity) {
-        List<RepairedAreaDTO> areas = (entity.getRepairedAreas() != null) ? 
-        entity.getRepairedAreas().stream().map(area -> new RepairedAreaDTO(
-            area.getId(), 
-            area.getAreaName(),
-            area.getJobDetail(),
-            area.getWorkOrder().getId()
-        )).toList() : new ArrayList<>();
+        if (entity == null) return null;
 
-    // 2. Mapear ColorAdjustments (Entidad -> DTO)
-    List<ColorAdjustmentDTO> adjustments = (entity.getColorAdjustments() != null) ? 
-        entity.getColorAdjustments().stream().map(adj -> new ColorAdjustmentDTO(
-            adj.getId(), 
-            adj.getTintName(), 
-            adj.getBaseColorCode(),
-            adj.getPaintSupplier(),
-            adj.getFinalFormula(),
-            adj.getTouchUpDescription(),
-            adj.getPrimerG1_G7(),
-            adj.getNumberOfCoats()
-        )).toList() : new ArrayList<>();
+        // Usamos los mappers específicos para las listas
+        List<RepairedAreaDTO> areas = (entity.getRepairedAreas() != null) ? 
+            entity.getRepairedAreas().stream()
+                .map(area -> new RepairedAreaDTO(
+                    area.getId(), 
+                    area.getAreaName(), 
+                    area.getJobDetail(), 
+                    entity.getId()
+                )).toList() : new ArrayList<>();
+
+        List<ColorAdjustmentDTO> adjustments = (entity.getColorAdjustments() != null) ? 
+            entity.getColorAdjustments().stream()
+                .map(ColorAdjustmentMapper::toDTO) // <--- USAMOS EL MAPPER NUEVO
+                .toList() : new ArrayList<>();
+
         return new WorkOrderDTO(
-                entity.getId(),
-                entity.getVehicle().getId(),
-                entity.getGeneralDescription(),
-                entity.getEntryDate(),
-                entity.getExitDate(),
-                areas,
-                adjustments
+            entity.getId(),
+            entity.getVehicle().getId(),
+            entity.getGeneralDescription(),
+            entity.getEntryDate(),
+            entity.getExitDate(),
+            areas,
+            adjustments
         );
     }
 
